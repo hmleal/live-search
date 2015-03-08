@@ -1,18 +1,17 @@
 $(function() {
     var suggestions = $('#suggestions'),
+        input = $('input[name=search]'),
         source = $('#suggests-template').html(),
         template = Handlebars.compile(source);
 
-    $('input[name=search]').on('focusout', function() {
-        /* esconde o pop-up de sugestões e limpa a busca antiga */
-        suggestions.hide();
-        $('#suggestions ul li').remove();
+    input.on('blur', function(e) {
+        e.preventDefault();
+        $(this).val('');
     });
 
-    $('input[name=search]').keyup(function() {
-        var input = $(this);
+    input.on('keyup', function() {
         $.ajax({
-            url: '/suggests?q=' + input.val(),
+            url: '/suggests?q=' + $(this).val(),
             dataType: 'json',
             success: function(data) {
                 $('#suggestions ul li').remove();
@@ -21,4 +20,12 @@ $(function() {
             }
         });
     });
+
+    $(document.body).on('click', function(e) {
+        var clicked = $(e.target);
+        if ( !(clicked.is(suggestions) || clicked.is(input)) ) {
+            suggestions.hide();
+        }
+    });
+
 });
