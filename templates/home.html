@@ -33,27 +33,7 @@
                 <a class="navbar-brand" href="#">LiveSearch</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-                <!-- important part -->
-                <div id="busca-padrao">
-                    <form class="navbar-form navbar-right" action="" method="get">
-                        <div class="form-group">
-                            <input type="text" name="search" class="form-control" placeholder="Search">
-                        </div>
-                    </form>
-                    <div id="sugestoes" style="">
-                        <ul class="list-unstyled">
-                            <li class="featuredContent sugestao">
-                                <div class="imgPequenaFeaturedContent">
-                                    <img src="http://s.glbimg.com/bu/i/fc/5fb2e18d-a47f-4bb8-9a7e-b66871cf53c0.png">
-                                </div>
-                                <a href="#" alt="" class="link">futebol</a>
-                            </li>
-                            <li class="texto-sugestao">Sugestões de busca</li>
-                            <li class="sugestao">Futebol</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /important part -->
+                {% include 'includes/search.html' %}
             </div><!--/.nav-collapse -->
         </div>
     </nav>
@@ -66,23 +46,19 @@
     <script id="suggests-template" type="text/x-handlebars-template">
     {% raw %}
     {{#if has_header}}
-    <li class="featuredContent sugestao">
-        <div class="imgPequenaFeaturedContent">
-            <img src="{{ header.logo }}">
-        </div>
-        <a href="{{ header.url }}" alt="{{{ header.title }}}" class="link">{{{ header.title }}}</a>
+    <li class="header">
+        <a href="{{ header.url }}" alt="{{{ header.title }}}"><img src="{{ header.logo }}"> {{{ header.title }}}</a>
     </li>
     {{/if}}
-    <li class="texto-sugestao">Sugestões de busca</li>
 
-    {{#if suggestions}}
+    <li class="suggestion-text">Sugestões de busca</li>
+
     {{#suggestions}}
-        <li class="sugestao" data-url="http://g1.globo.com/busca/?q={{ query }}">{{{ text }}}</a></li>
+    <li><a href="http://g1.globo.com/busca/?q={{ query }}">{{{ text }}}</a></li>
     {{/suggestions}}
-    {{/if}}
 
     {{#unless suggestions}}
-    <li class="sugestao"><strong>Nenhuma sugestão encontrada</strong></li>
+    <li class="suggestions-not-found"><strong>Nenhuma sugestão encontrada</strong></li>
     {{/unless}}
     {% endraw %}
     </script>

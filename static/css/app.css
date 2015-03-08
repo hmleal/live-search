@@ -1,13 +1,11 @@
 #busca-padrao {
     position: relative;
 }
-
-#sugestoes {
+#suggestions {
     position: absolute;
-    top: 46px;
-    right: -44px;
-    z-index:10000;
-    width: 298px;
+    top: 45px;
+    right: 0;
+    width: 290px;
     border: solid 1px #ddd;
     border-radius: 2px;
     background-color: #fff;
@@ -15,79 +13,52 @@
        -moz-box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
             box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
 }
-#sugestoes:before {
-    position: absolute;
-    top: -21px;
-    left: -14px;
-    width: 320px;
-    height: 23px;
-    background-color: transparent;
-    background-image: url(http://s.glbimg.com/bu/i/sprite_suggest.png);
-    background-position: 0 -3px;
-    background-size: 330px 85px;
-    content: "";
-    pointer-events: none;
+#suggestions ul {
+    margin: 0;
+    padding: 0;
+    font-size: 1.08em;
 }
-    #sugestoes ul {
-        font-size: 1.08em;
-        margin: 0;
-        padding: 0;
-    }
-    #sugestoes ul li {
-    }
-    #sugestoes ul li a {
-        color: #333;
-        text-decoration: none;
-    }
-    #sugestoes ul li.texto-sugestao {
-        margin: 10px 10px 3px;
-        padding: 6px 10px 2px 0;
-        border-top: 1px solid #ddd;
-        color: #666;
-        text-align: right;
-        font-style: italic;
-        font-size: 13px;
-        font-family: 'Open Sans', sans-serif';
-    }
-    #sugestoes ul li.sugestao {
-        padding: 3px 0 3px 10px;
-        border-left: 3px solid transparent;
-        background-color: #fff;
-        color: #333;
-        font-size: 15px;
-        cursor: pointer;
-    }
-    #sugestoes ul li.sugestao-hover {
-        border-left: 3px solid #a80000;
-        background-color: #eee;
-        color: #a80000;
-    }
-    #sugestoes ul li.busca-fixa {
-        margin-top: 3px;
-        padding: 6px 6px;
-        border-top: solid 1px #ddd;
-    }
-
-    .featuredContent {
-        margin: 5px 5px;
-        height: 50px;
-    }
-        .featuredContent a.link {
-            display: inline;
-            float: left;
-            padding: 14px 0 13px;
-            font-weight: bold;
-        }
-    .imgPequenaFeaturedContent {
-        display: inline;
-        float: left;
-        overflow: hidden;
-        margin: 5px 8px 4px 10px;
-        width: 45px;
-        height: 34px;
-    }
-
-.header {
-    width: 100%;
-    white-space: nowrap;
+#suggestions ul li.suggestions-not-found {
+    padding: 3px 0 3px 10px;
+    color: #333;
+    font-size: 15px;
 }
+#suggestions ul li.header a {
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#suggestions ul li.suggestion-text {
+    margin: 10px 10px 3px;
+    padding: 6px 10px 2px 0;
+    border-top: 1px solid #ddd;
+    color: #666;
+    text-align: right;
+    font-style: italic;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif';
+}
+#suggestions ul li a {
+    display: block;
+    padding: 3px 0 3px 10px;
+    border-left: 3px solid transparent;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+}
+#suggestions ul li a:hover {
+    border-left: 3px solid #a80000;
+    background-color: #eee;
+    color: #a80000;
+}
+/*
+#suggestions:before {
+width: 0;
+height: 0;
+border-width: 0 11px 200px 11px;
+border-style: solid;
+border-color: transparent transparent #007bff transparent;
+content: "";
+}
+ */
