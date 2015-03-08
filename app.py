@@ -1,7 +1,7 @@
 import os
 import json
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, redirect, jsonify
 from lib import slugify, html_entities_to_ascii
 
 
@@ -27,6 +27,9 @@ def suggests():
         'suggestions': [],
         'suggestions_highlithed': []
     }
+
+    if not q:
+        return jsonify(suggests)
 
     has_header = False
     for header in data['hightlights']:
