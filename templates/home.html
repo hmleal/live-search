@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LiveSearch</title>
+
+    <!-- Pure.css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">LiveSearch</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <!-- important part -->
+                <div id="busca-padrao">
+                    <form class="navbar-form navbar-right" action="" method="get">
+                        <div class="form-group">
+                            <input type="text" name="search" class="form-control" placeholder="Search">
+                        </div>
+                    </form>
+                    <div id="sugestoes" style="">
+                        <ul class="list-unstyled">
+                            <li class="featuredContent sugestao">
+                                <div class="imgPequenaFeaturedContent">
+                                    <img src="http://s.glbimg.com/bu/i/fc/5fb2e18d-a47f-4bb8-9a7e-b66871cf53c0.png">
+                                </div>
+                                <a href="#" alt="" class="link">futebol</a>
+                            </li>
+                            <li class="texto-sugestao">Sugestões de busca</li>
+                            <li class="sugestao">Futebol</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /important part -->
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/handlebars-v3.0.0.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <script id="suggests-template" type="text/x-handlebars-template">
+    {% raw %}
+    {{#if has_header}}
+    <li class="featuredContent sugestao">
+        <div class="imgPequenaFeaturedContent">
+            <img src="{{ header.logo }}">
+        </div>
+        <a href="{{ header.url }}" alt="{{{ header.title }}}" class="link">{{{ header.title }}}</a>
+    </li>
+    {{/if}}
+    <li class="texto-sugestao">Sugestões de busca</li>
+
+    {{#if suggestions}}
+    {{#suggestions}}
+        <li class="sugestao" data-url="http://g1.globo.com/busca/?q={{ query }}">{{{ text }}}</a></li>
+    {{/suggestions}}
+    {{/if}}
+
+    {{#unless suggestions}}
+    <li class="sugestao"><strong>Nenhuma sugestão encontrada</strong></li>
+    {{/unless}}
+    {% endraw %}
+    </script>
+</body>
+</html>
